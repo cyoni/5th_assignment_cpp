@@ -52,11 +52,11 @@ namespace itertools{
 	
 
 		
-		const_iterator begin() const{
+		const_iterator begin() {
 		return powerset<C1>::const_iterator(range1.begin()); // it gets an iterator from range class
 		}
 		
-	    const_iterator end() const{
+	    const_iterator end() {
 		return powerset<C1>::const_iterator(range1.end());
 		}
 	
