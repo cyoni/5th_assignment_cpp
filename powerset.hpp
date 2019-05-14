@@ -14,12 +14,12 @@ namespace itertools{
 	powerset<C1>(const C1 r1) : range1(r1) {} // constructor 
 
 	
-	class const_iterator{
+	class iterator{
 
 	public:
-	typename C1::const_iterator i1; // iterator of range [1]
+	typename C1::iterator i1; // iterator of range [1]
 	 
-	const_iterator(typename C1::const_iterator r_1) : i1(r_1) {} // constructor of the iterator   
+	iterator(typename C1::iterator r_1) : i1(r_1) {} // constructor of the iterator   
 
 	auto operator*() const{ 
 	return *i1; // range1
@@ -29,22 +29,22 @@ namespace itertools{
 		// ?? 	FIXME
 	//}
 
-	const_iterator& operator++(){//++i
+	iterator& operator++(){//++i
 	i1++;
 	return *this;	
 	}
 	
-	const const_iterator operator++(int){//i++
+	const iterator operator++(int){//i++
 	iterator tmp=*this;
 	i1++;
 	return tmp;	
 	}
 	
-	bool operator==(const const_iterator& a) const{
+	bool operator==(const iterator& a) const{
 		return (i1 == a.i1);
 	}
 	
-	bool operator!=(const const_iterator& a) const{
+	bool operator!=(const iterator& a) const{
 		return (i1 != a.i1);
 	}
 
@@ -52,12 +52,12 @@ namespace itertools{
 	
 
 		
-		const_iterator begin() {
-		return powerset<C1>::const_iterator(range1.begin()); // it gets an iterator from range class
+		int*  begin()  const{
+		return nullptr;
 		}
 		
-	    const_iterator end() {
-		return powerset<C1>::const_iterator(range1.end());
+	    int*  end() const{
+		return nullptr;
 		}
 	
 	}; // end main class

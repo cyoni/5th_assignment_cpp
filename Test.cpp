@@ -15,8 +15,8 @@ using namespace std;
 
 using namespace itertools;
 
-
 /*
+
 template<typename Iterable>
  string iterable_to_string(const Iterable &it) {
 	
@@ -65,7 +65,7 @@ int main() {
 	string product1 = "1,h  1,e  1,l  1,l  1,o  2,h  2,e  2,l  2,l  2,o  3,h  3,e  3,l  3,l  3,o", actual11 = ""; for (auto i: product(range(1,4), string("hello")))	actual11 += to_string(i);
 	string product2 = "1,5  1,6  1,7  1,8  1,9  2,5  2,6  2,7  2,8  2,9  3,5  3,6  3,7  3,8  3,9", actual12 = ""; for (auto i: product(range(1,4), range(5,9)))	actual12 += to_string(i);
 
-	//string powerset1 = "{}{a}{b}{a,b}{x}{a,x}{b,x}{a,b,x}{y}{a,y}{b,y}{a,b,y}{x,y}{a,x,y}{b,x,y}{a,b,x,y}", actual13 = "";   iterable_to_string(powerset(chain(range('a','c'),range('x','z'))));
+//	string powerset1 = "{}{a}{b}{a,b}{x}{a,x}{b,x}{a,b,x}{y}{a,y}{b,y}{a,b,y}{x,y}{a,x,y}{b,x,y}{a,b,x,y}", actual13 = "";   iterable_to_string(powerset(chain(range('a','c'),range('x','z'))));
 	//string powerset2 = "{}{1}{2}{1,2}{3}{1,3}{2,3}{1,2,3}", actual14 = ""; for (auto i:  iterable_to_string(powerset(range(1,4))))	actual14 += to_string(i);
 	
 	
@@ -101,7 +101,7 @@ int main() {
 			;
 	
 			testcase.setname("powerset test")
-			//.CHECK_EQUAL(actual13 , powerset1)
+		//	.CHECK_EQUAL(actual13 , powerset1)
 		//	.CHECK_EQUAL(actual14 , powerset2)
 			;	
     grade = testcase.grade();
