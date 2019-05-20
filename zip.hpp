@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 
@@ -8,57 +9,80 @@ namespace itertools{
 	class zip{
 	public:
 
-	C1 range1;
-	C2 range2;
-	
-	zip<C1,C2>(const C1 r1, const C2 r2) : range1(r1),range2(r2) {} // constructor 
+	C1 c1;
+	C2 c2;
+
+
+	zip<C1,C2>(const C1 r1, const C2 r2) : c1(r1), c2(r2) {} // constructor 
 
 	
 	class iterator{
 
+	private:
+	typename C1::iterator i1; 
+	typename C2::iterator i2; 
+
+
 	public:
-	typename C1::iterator i1; // iterator of range [1]
-	 
-	iterator(typename C1::iterator r_1) : i1(r_1) {} // constructor of the iterator   
+	
+	
+	
+	iterator(typename C1::iterator c_1, typename C2::iterator c_2) : i1(c_1), i2(c_2) {} // constructor of the iterator   
 
-	auto operator*() const{ 
-	return *i1; // range1
+		
+	auto operator*() const{
+	ostringstream o;
+  	o << *i1  << ',' << *i2;   
+	return o.str(); 
 	}
-
-	//C1* operator->() const{
-		// ?? 	FIXME
-	//}
 
 	iterator& operator++(){//++i
-	i1++;
+	i1++; 
+	i2++; 
 	return *this;	
 	}
+	
 	
 	const iterator operator++(int){//i++
 	iterator tmp=*this;
 	i1++;
+	i2++;
 	return tmp;	
 	}
 	
-	bool operator==(const iterator& a) const{
-		return (i1 == a.i1);
-	}
 	
-	bool operator!=(const iterator& a) const{
-		return (i1 != a.i1);
+	bool operator==(const iterator& other)const {
+		return (i1 == other.i1);
 	}
-
+	 
+	bool operator!=(const iterator& other) const {
+		return (i1 != other.i1);
+	}
+		//template <typename X, typename Y> 
+	 // friend ostream& operator<< (ostream& , const typename zip<X,Y>::iterator ostringstream& );
+		
 		};// end class
 	
 		iterator begin(){
-		return zip<C1,C2>::iterator(range1.begin()); // it gets an iterator from range class
+		return zip<C1,C2>::iterator(c1.begin(), c2.begin()); 
 		}
 		
 		iterator end(){
-		return zip<C1,C2>::iterator(range1.end());
+		return zip<C1,C2>::iterator(c1.end(), c2.end());
 		}
 	
+    	friend ostream& operator<< (ostream& os, const  ostringstream& o);
+
 	}; // end main class
+
+		
+	//	ostream& operator<< (ostream& os, ostringstream& o) {
+	//	string a = "";
+	//	a = o.str();
+	//	os << a;
+	//	return os;	
+	//	}	
+
 
 }
 // end namespace
