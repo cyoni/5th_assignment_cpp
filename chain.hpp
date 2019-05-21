@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 
@@ -34,10 +35,7 @@ namespace itertools{
 			return *i1; 
 		}
 
-		//C1* operator->() const{
-			// ?? 	FIXME
-		//}
-
+	
 		const_iterator& operator++(){//++i
 		if (secondIter==true) i2++;
 		else i1++;
@@ -57,11 +55,14 @@ namespace itertools{
 	
 		bool operator!=(const const_iterator& other) {
 		if (secondIter==true){
+
 			return (i2 != other.i2);		
 		}			
 			else
-				if (i1 == other.i1) { // if you have reached the end of the first iterator
-						secondIter = true;	return true; 
+				if (i1 == other.i1 ) { // if you have reached the end of the first iterator
+					if (i2 == other.i2) { return false;} 
+						secondIter = true;	
+						return true;  
 					}
 					else
 						return true;

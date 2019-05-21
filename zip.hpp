@@ -1,6 +1,5 @@
 #include <iostream>
-#include <sstream>  
-
+#include <sstream>
 using namespace std;
 
 
@@ -17,18 +16,18 @@ namespace itertools{
 	zip<C1,C2>(const C1 r1, const C2 r2) : c1(r1), c2(r2) {} // constructor 
 
 	
-	class iterator{
+	class const_iterator{
 
 	private:
-	typename C1::iterator i1; 
-	typename C2::iterator i2; 
+	typename C1::const_iterator i1; 
+	typename C2::const_iterator i2; 
 
 
 	public:
 	
 	
 	
-	iterator(typename C1::iterator c_1, typename C2::iterator c_2) : i1(c_1), i2(c_2) {} // constructor of the iterator   
+	const_iterator(typename C1::const_iterator c_1, typename C2::const_iterator c_2) : i1(c_1), i2(c_2) {} // constructor of the const_iterator   
 
 		
 	auto operator*() const{
@@ -37,39 +36,39 @@ namespace itertools{
 	return o.str(); 
 	}
 
-	iterator& operator++(){//++i
+	const_iterator& operator++(){//++i
 	i1++; 
 	i2++; 
 	return *this;	
 	}
 	
 	
-	const iterator operator++(int){//i++
-	iterator tmp=*this;
+	const const_iterator operator++(int){//i++
+	const_iterator tmp=*this;
 	i1++;
 	i2++;
 	return tmp;	
 	}
 	
 	
-	bool operator==(const iterator& other)const {
+	bool operator==(const const_iterator& other) {
 		return (i1 == other.i1);
 	}
 	 
-	bool operator!=(const iterator& other) const {
-		return (i1 != other.i1);
+	bool operator!=(const const_iterator& other)  {
+		return  (i1 != other.i1);
 	}
 		//template <typename X, typename Y> 
-	 // friend ostream& operator<< (ostream& , const typename zip<X,Y>::iterator ostringstream& );
+	 // friend ostream& operator<< (ostream& , const typename zip<X,Y>::const_iterator ostringstream& );
 		
 		};// end class
 	
-		iterator begin(){
-		return zip<C1,C2>::iterator(c1.begin(), c2.begin()); 
+		const_iterator begin() const{
+		return zip<C1,C2>::const_iterator(c1.begin(), c2.begin()); 
 		}
 		
-		iterator end(){
-		return zip<C1,C2>::iterator(c1.end(), c2.end());
+		const_iterator end() const{
+		return zip<C1,C2>::const_iterator(c1.end(), c2.end());
 		}
 	
     	friend ostream& operator<< (ostream& os, const  ostringstream& o);

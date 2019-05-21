@@ -1,6 +1,5 @@
 #include <iostream>
-#include <sstream>  
-
+#include <sstream>
 using namespace std;
 
 
@@ -14,18 +13,20 @@ namespace itertools{
 	
 	product<C1,C2>(const C1 r1, const C2 r2) : c1(r1), c2(r2) {} // constructor 
 
-	class iterator{
+	class const_iterator{
 
 	private:
-	typename C1::iterator i1; 
-	typename C2::iterator i2; 
-	typename C2::iterator i3; 
+	typename C1::const_iterator i1; 
+	typename C2::const_iterator i2; 
+	typename C2::const_iterator i3;
+	int c; 
+	bool FirstTime;
 	bool flag;
 
 	public:
 	
 
-	iterator(typename C1::iterator c_1, typename C2::iterator c_2,typename C2::iterator c_3) : i1(c_1), i2(c_2), i3(c_3) { flag=true;} // constructor of the iterator   
+	const_iterator(typename C1::const_iterator c_1, typename C2::const_iterator c_2,typename C2::const_iterator c_3) : i1(c_1), i2(c_2), i3(c_3) {c=0;FirstTime=true; flag=true;} // constructor of the const_iterator   
 
 	auto operator*() const{
 	ostringstream o;
@@ -33,26 +34,30 @@ namespace itertools{
 	return o.str(); 
 	}
 
-	iterator& operator++(){//++i
+	const_iterator& operator++(){//++i
 	//i1++; 
 	i2++; 
 	return *this;	
 	}
 	
 	
-	const iterator operator++(int){//i++
-	iterator tmp=*this;
+	const const_iterator operator++(int){//i++
+	const_iterator tmp=*this;
 	//i1++;
 	//i2++;
 	return tmp;	
 	}
 	
 	
-	bool operator==(const iterator& other)const {
+	bool operator==(const const_iterator& other)const {
 		return (i1 == other.i1);
 	}
 	 
-	bool operator!=(const iterator& other)  {
+	bool operator!=(const const_iterator& other)  {
+		if (c>100) return false;
+		c++;
+	if (FirstTime && i2 == other.i2) flag=false;
+	FirstTime=false;
 	if (flag)	{
 		if (i1 == other.i1) return false;
 			else
@@ -66,12 +71,12 @@ namespace itertools{
 
 		};// end class
 	
-		iterator begin(){
-		return product<C1,C2>::iterator(c1.begin(), c2.begin(),c2.begin()); 
+		const_iterator begin() const{
+		return product<C1,C2>::const_iterator(c1.begin(), c2.begin(),c2.begin()); 
 		}
 		
-		iterator end(){
-		return product<C1,C2>::iterator(c1.end(), c2.end(), c2.begin());
+		const_iterator end() const{
+		return product<C1,C2>::const_iterator(c1.end(), c2.end(), c2.begin());
 		}
 	
 

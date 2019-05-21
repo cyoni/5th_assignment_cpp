@@ -1,9 +1,26 @@
 #include <iostream>
+#include <sstream>
+#include <set>
+
 using namespace std;
 
 
 namespace itertools{
-
+	template<typename IT>
+	class subset{
+	
+	class iterator{
+	
+	};	
+	
+	iterator begin(){
+		
+		}
+		iterator end(){
+		
+		}
+	};
+	 
 	template <typename C1> // templates for the 1st container(range1) and 2nd container(range2)
 	class powerset{
 	public:
@@ -21,8 +38,10 @@ namespace itertools{
 	 
 	const_iterator(typename C1::const_iterator r_1) : i1(r_1) {} // constructor of the iterator   
 
-	auto operator*() const{ 
-	return *i1;
+	set<int> operator*() { 
+	set<int>List;
+	
+	return List;//(*i1);
 	}
 
 	const_iterator& operator++(){//++i   !!
@@ -53,8 +72,17 @@ namespace itertools{
 	    const_iterator end() const {
 		return powerset<C1>::const_iterator(c1.end());
 		}
+
+
 	
 	}; // end main class
+
+	template <typename U>
+	std::ostream& operator <<(std::ostream& os, const typename std::set<U> myset) {
+		os << 'Z';
+		return os;
+	}
+
 
 }
 // end namespace
