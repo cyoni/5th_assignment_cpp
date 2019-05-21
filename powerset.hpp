@@ -78,8 +78,8 @@ namespace itertools{
 	}; // end main class
 
 	template <typename U>
-	std::ostream& operator <<(std::ostream& os, const typename std::set<U> myset) {
-		os << 'Z';
+	std::ostream& operator<<(ostream& os, typename std::set<U>Set) {
+		os << '.';
 		return os;
 	}
 
